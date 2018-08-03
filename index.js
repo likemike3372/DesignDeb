@@ -28,7 +28,7 @@ var commentRoutes = require("./routes/comments"),
 
 //PAssport config
 app.use(require("express-session")({
-    secret:"Maise and Hailee are the best",
+    secret:" are the best",
     resave:false,
     saveUninitialized:false
 }));
@@ -66,6 +66,6 @@ app.use("/events/:id/comments",commentRoutes);
 
 
 app.listen(process.env.PORT, process.env.IP, function(){
-    console.log("The Yelpcamp server has started");
+    console.log("The server has started");
 });
 
