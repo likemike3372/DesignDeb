@@ -9,7 +9,7 @@ var app=express();
 var mongoose = require("mongoose");
 
 var bodyParser=require("body-parser");
-var Campground=require("./models/campground");
+var Event=require("./models/event");
 var passport=require("passport"); 
 var LocalStrategy=require("passport-local");
 var methodOverride= require("method-override");
@@ -20,7 +20,7 @@ var flash=require("connect-flash");
 
 var moment=require("moment")
 var commentRoutes = require("./routes/comments"),
-    campgroundRoutes= require("./routes/campgrounds"),
+    eventRoutes= require("./routes/events"),
     indexRoutes = require("./routes/auth");
 
 //seed  the database
@@ -60,8 +60,8 @@ app.use(function(req, res, next){
 
 
 app.use(indexRoutes);
-app.use("/campgrounds",campgroundRoutes);
-app.use("/campgrounds/:id/comments",commentRoutes);
+app.use("/events",eventRoutes);
+app.use("/events/:id/comments",commentRoutes);
 
 
 

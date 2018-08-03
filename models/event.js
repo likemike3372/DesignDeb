@@ -1,6 +1,6 @@
 var mongoose=require("mongoose");
 
-var campgroundsSchema=new mongoose.Schema({
+var eventsSchema=new mongoose.Schema({
     name:String,
     price:String,
     image:String,
@@ -26,6 +26,6 @@ var campgroundsSchema=new mongoose.Schema({
                 ]
 });
 
-var Campground=mongoose.model("Campground",campgroundsSchema);
+var Event=mongoose.model("Event",eventsSchema);
 
-module.exports=Campground;
+module.exports=Event;

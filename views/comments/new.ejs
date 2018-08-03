@@ -2,13 +2,13 @@
 
 <div class="container">
     
-       <h1 style="text-align:center">Add new Comment <%=campground.name%></h1>
+       <h1 style="text-align:center">Add new Comment <%=event.name%></h1>
     
     
     
     <div style="width:30%; margin: 25px auto">
         
-        <form action="/campgrounds/<%=campground._id%>/comments" method ="POST">
+        <form action="/events/<%=event._id%>/comments" method ="POST">
     <div class="form-group"><input class="form-control" type = "text" name="comment[text]" placeholder="text"></div>
     
       <!--  <div class="form-group"><input class="form-control" type="text" name="description" placeholder="description"></div> -->
@@ -19,7 +19,7 @@
    
     
         </form>
-    <a href="/campgrounds">Go Back</a>
+    <a href="/events">Go Back</a>
     </div>
     
     

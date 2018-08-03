@@ -3,7 +3,7 @@
     
     <div class="row">
         <div class="col-md-3">
-            <p class="lead">Yelpcamp</p>
+            <p class="lead">CSI</p>
             <li class="list-group-item">Info 1</li>
             <li class="list-group-item active">Info 2</li>
             <li class="list-group-item">Info 3</li>
@@ -12,37 +12,36 @@
     
         <div class="col-md-9">
             <div class="thumbnail">
-                <img class="img-responsive" src="<%=campground.image %>">
+                <img class="img-responsive" src="<%=event.image %>">
                 <div class="caption-full">
-                    <h4 class="pull-right">$<%=campground.price%>/night</h4>
-                    <p><%=campground.created %></p>
-                <p><%=campground.created1 %></p>
-                    <h4><a href=""><%=campground.name%></a></h4>
-                    <p><p><%=campground.description%></p></p>
+                    <h4 class="pull-right">$<%=event.price%>/night</h4>
+                    <p><%=event.created.toDateString() %></p>
+                    <h4><a href=""><%=event.name%></a></h4>
+                    <p><p><%=event.description%></p></p>
                     <p>
-                       <em> Submitted by <%=campground.author.username%> </em>
+                       <em> Submitted by <%=event.author.username%> </em>
                     </p>
-                    <% if(currentUser && campground.author.id.equals(currentUser._id)){%>
-                    <a class="btn btn-warning" href="/campgrounds/<%=campground._id%>/edit">EDIT</a>
-                    <form class="deleteform" action="/campgrounds/<%=campground._id%>?_method=DELETE" method="POST">
+                    <% if(currentUser && event.author.id.equals(currentUser._id)){%>
+                    <a class="btn btn-warning" href="/events/<%=event._id%>/edit">EDIT</a>
+                    <form class="deleteform" action="/events/<%=event._id%>?_method=DELETE" method="POST">
                         <button class="btn btn-danger">Delete</button>
                     </form> <% } %>
                 </div>
             </div>
             <div class="well">
                 <div class="text-right">
-                    <a class="btn btn-success" href="/campgrounds/<%=campground._id%>/comments/new">Add New Comment</a>
+                    <a class="btn btn-success" href="/events/<%=event._id%>/comments/new">Add New Comment</a>
                  </div>
                  <hr>
-                <% campground.comments.forEach(function(comment){  %>
+                <% event.comments.forEach(function(comment){  %>
                 <div class="row">
                     <div class="col-md-12">
                        <strong> <%=comment.author.username%></strong>
                         <span class="pull-right">10 days ago</span>
                         <p><%=comment.text%></p>
                         <% if(currentUser && comment.author.id.equals(currentUser._id)){%> 
-                        <a class="btn btn-xs btn-warning" href="/campgrounds/<%=campground._id%>/comments/<%=comment._id%>/edit">Edit</a>
-                        <form class="deleteform" action="/campgrounds/<%=campground._id%>/comments/<%=comment._id%>?_method=DELETE" method="POST">
+                        <a class="btn btn-xs btn-warning" href="/events/<%=event._id%>/comments/<%=comment._id%>/edit">Edit</a>
+                        <form class="deleteform" action="/events/<%=event._id%>/comments/<%=comment._id%>?_method=DELETE" method="POST">
                             <input type="submit" class="btn btn-xs btn-danger" value="Delete">
                         </form> <% } %>
                     </div>
@@ -62,8 +61,8 @@
 
 <script>
   function initMap() {
-    var lat = <%= campground.lat %>;
-    var lng = <%= campground.lng %>;
+    var lat = <%= event.lat %>;
+    var lng = <%= event.lng %>;
     var center = {lat: lat, lng: lng };
     var map = new google.maps.Map(document.getElementById('map'), {
         zoom: 8,
@@ -71,9 +70,9 @@
         scrollwheel: false
     });
     var contentString = `
-      <strong><%= campground.name %><br />
-      <%= campground.location %></strong>
-      <p><%= campground.description %></p>
+      <strong><%= event.name %><br />
+      <%= event.location %></strong>
+      <p><%= event.description %></p>
     `
     var infowindow = new google.maps.InfoWindow({
       content: contentString

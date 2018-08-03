@@ -1,6 +1,6 @@
 var mongoose = require("mongoose");
 
-var Campground=require("./models/campground");
+var Event=require("./models/event");
 var Comment=require("./models/comment");
 
 
@@ -19,32 +19,32 @@ var data=[
 
 function seedDB(){
     
-    Campground.remove({},function(err){
+    Event.remove({},function(err){
     if(err)
     {console.log(err);}
     
-    console.log("removed Campgrounds");
+    console.log("removed Events");
     data.forEach(function(seed){
-        Campground.create(seed, function(err, campground){
+        Event.create(seed, function(err, event){
             if(err)
             {
                 console.log(err);
             }
             else
             {
-                console.log("added a campground");
+                console.log("added a event");
                 //create a comment
                 Comment.create({text:"fdsgdsfg gsdfgdfsg sdfghdfgdfsg", author:"hoemr"},
                 function(err,comment){
                     if(err){console.log(err);}else{
-                    campground.comments.push(comment);
-                    campground.save();
+                    event.comments.push(comment);
+                    event.save();
                     console.log("Created new comment");
                     }
                 });
             }
     });
-    // add a few campgrounds
+    // add a few events
     
     });
     

@@ -1,18 +1,18 @@
 //all the middleware goes here
-var Campground=require("../models/campground");
+var Event=require("../models/event");
 var Comment = require("../models/comment"); 
 var middlewareObj={};
 
-middlewareObj.checkcampownership=function (req, res, next){
+middlewareObj.checkeventownership=function (req, res, next){
    
      if(req.isAuthenticated()){
-         Campground.findById(req.params.id, function(err, foundCampGround){
+         Event.findById(req.params.id, function(err, foundEvent){
         if(err)
-        {   req.flash("error", "Camp not found");
+        {   req.flash("error", "Event not found");
             res.redirect("back")}
         else
         {    //does user own the campground?
-            if(foundCampGround.author.id.equals(req.user._id)){
+            if(foundEvent.author.id.equals(req.user._id)){
                 next();
 
             }  //foundCampGround.author.id is an object while author._id is a string

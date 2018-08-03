@@ -9,29 +9,29 @@
 
 <div class="container">
     
-    <div id="map"></div>
-    	<div id="info"></div>
+   <!-- <div id="map"></div> -->
+    	
 
 
 <header class="jumbotron">
-<div class="container"><h1>Welcome To YelpCamp</h1>
-<p>View our hand picked campgrounds from all over the world</p>
-<p><a class="btn btn-primary btn-lg" href="/campgrounds/new">Post New Campground</a> </p>
+<div class="container"><h1>Welcome To CSI</h1>
+
+<p><a class="btn btn-primary btn-lg" href="/events/new">Post New Event</a> </p>
 </div>
 </header>
 
         <div class="row text-center" style="display:flex; flex-wrap:wrap;">
         
-        <% campgrounds.forEach(function(campground){   	 %>
+        <% events.forEach(function(event){  {	 %>
       
         <div class="col-md-4 col-sm-6">
             <div class="thumbnail"> 
-                <img src="<%=campground.image%>">
+                <img src="<%=event.image%>">
                 
                 <div class="caption">
-                    <h4><%=campground.name %></h3>
+                    <h4><%=event.name %></h3>
                     </div>  
-                    <p><a href="/campgrounds/<%=campground._id%>" class="btn btn-primary">More Info</a></p>
+                    <p><a href="/events/<%=event._id%>" class="btn btn-primary">More Info</a></p>
                 </div>
             </div>
              
@@ -40,7 +40,7 @@
             
         
             
-        <%  }) %>
+        <% }  }) %>
         </div>
 </div>
 <% include ../partials/footer %>
@@ -49,7 +49,7 @@
 	
 
 <script>
-  var campgrounds = <%- JSON.stringify(campgrounds) %>;
+  var events = <%- JSON.stringify(events) %>;
 
   function init() {	var marker = [];
 	    var infowindow = [];
@@ -58,13 +58,14 @@
     var info=[];
     
     
-    campgrounds.forEach(function (campground) {
+    events.forEach(function (event) { //var q=new Date(); if(event.created.getDate()===q.getDate()) 
+    {
       
-      locations.push({ latlng:new google.maps.LatLng(campground.lat, campground.lng)})
-      info.push({description:campground.name})
+      locations.push({ latlng:new google.maps.LatLng(event.lat, event.lng)})
+      info.push({description:event.name})
    
 
-   });
+   } });
         var bounds = new google.maps.LatLngBounds();
 	    
     
@@ -93,4 +94,4 @@
   window.onload = init;
 </script>
 
-<script src="https://maps.google.com/maps/api/js?key=AIzaSyDh9gIkIRpa98pDpseDftsHHSb28aXgICo&callback=init"></script>
+<script src="http://maps.google.com/maps/api/js?key=AIzaSyDh9gIkIRpa98pDpseDftsHHSb28aXgICo&callback=init"></script>
